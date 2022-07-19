@@ -1,0 +1,670 @@
+##All the windows in my program
+WindowManager:                            
+    TitleMenu:
+    StudentLogin:
+    StudentRegister:
+    StudentMainMenu:
+    Biology:
+    Chemistry:
+
+##Common Button atributes
+<Button>
+    ##Size of each button and its text colour
+    size_hint:(0.2,0.1)
+    color: (0,0,0)
+##    background_color: (68/255, 255/255, 255/255)
+
+
+#:import Factory kivy.factory.Factory
+
+<MyPopup@Popup>
+    auto_dismiss: False
+    title: 'Do you wish to log out ?'
+    size_hint:(0.4,0.6)
+
+    BoxLayout:
+        Button:
+            on_release:
+                app.root.current = 'titlemenu'
+                root.dismiss()
+            text:'Log Out'
+
+        Button:
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.dismiss()
+            text:'Go Back'
+            
+
+
+##The rounder shape of the rectangle buttons
+<RoundedButton@Button>
+    background_color: (0,0,0,0)
+    background_normal:''
+    canvas.before:
+##        Color:
+##            rgba:(0,0,0,0)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            ##determine how round the buttons are gonna be
+            radius: [18]
+
+## Title Menu window    
+<TitleMenu>:
+
+    ##Name of each window to refer to buttons 
+    name: 'titlemenu'
+
+    FloatLayout:
+
+        size: root.width,root.height
+            
+        RoundedButton: 
+            markup: True
+            text: '[font=times]Student Login[/font]'
+            font_size: 20
+            pos_hint:{'x':0.4, 'y':0.5}
+            ##Giving Button functions
+            on_press: print('Student Login!')
+            on_release:
+                app.root.current = 'studentlogin'
+                root.manager.transition.direction= 'right'
+            
+        RoundedButton:
+            markup: True
+            text: '[font=times]Student Register[/font]'
+            font_size: 20
+            pos_hint:{'x':0.4, 'y':0.3}
+            ##Giving Button functions       
+            on_press: print('Student Register!')
+            on_release:
+                app.root.current = 'studentregister'
+                root.manager.transition.direction= 'right'
+            
+
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Parent Login[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.6, 'y':0.5}
+##            ##Giving Button functions
+##            on_press: print('Parent login!')
+##            on_release:
+##                app.root.current = 'parentlogin'
+##                root.manager.transition.direction= 'left'
+##
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Parent Register[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.6, 'y':0.3}
+##            ##Giving Button functions
+##            on_press: print('Parent Register!')
+##            on_release:
+##                app.root.current = 'parentregister'
+##                root.manager.transition.direction= 'left'
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Exit[/font]'
+            font_size: 20
+            pos_hint:{'x':0.4, 'y':0.1}
+            on_press: exit()
+
+        Label:
+            markup: True
+            text: 'RevisePro'
+            font_size: 80
+            pos_hint:{'x':0, 'y':0.35}
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            color: (1,1,1)
+
+##        Label:
+##            markup: True
+##            text: 'Student'
+##            font_size: 60
+##            bold: True
+##            outline_color: (0,0,0)
+##            outline_width: 2
+##            pos_hint:{'x':-0.2, 'y':0.2}
+##            color: (1,1,1)
+
+##        Label:
+##            markup: True
+##            text: 'Parent'
+##            bold: True
+##            outline_color: (0,0,0)
+##            outline_width: 2
+##            font_size: 60
+##            pos_hint:{'x':0.2, 'y':0.2}
+##            color: (1,1,1)
+
+## Student Login window 
+<StudentLogin>:
+    ##Name of window to refer to the buttons
+    name: 'studentlogin'
+
+    ## For 'Show Password' function
+    textinput: password
+    #username: username
+    password: password
+    
+    FloatLayout:
+
+
+        size: root.width,root.height
+            
+        RoundedButton:
+            markup: True
+            text: '[font=times]Back[/font]'
+            font_size: 25
+            size_hint:(0.13,0.08)
+            pos_hint:{'x':0.82, 'y':0.85}
+            on_press: print('Back')
+            on_release:
+                app.root.current = 'titlemenu'
+                root.manager.transition.direction='left'
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Login[/font]'
+            font_size: 25
+            size_hint: (0.15,0.1)
+            pos_hint:{'x':0.68, 'y':0.25}
+            on_press: print('studentmenu')
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction='right'
+
+        Label:
+            markup: True
+            text: 'Show Password'
+            font_size: 20
+            outline_color: (0,0,1)
+            outline_width: 1
+            pos_hint: {'x':0.16, 'y':-0.05}
+
+        CheckBox:
+            id: showpassword
+            on_press: root.showpassword()
+            size_hint: (0.2,0.2)
+            pos_hint: {'x':0.485, 'y':0.35}
+
+  
+                    
+        Label:
+            id: welcomestudentlogin
+            markup: True
+            text: 'Welcome Student!'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 50
+            pos_hint:{'x':0, 'y':0.4}
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Username:'
+            outline_color: (0,0,1)
+            outline_width: 1
+            font_size: 25
+            pos_hint:{'x':-0.22, 'y':0.11}
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Enter your username and password'
+            outline_color: (0,0,1)
+            outline_width: 1
+            font_size: 30
+            pos_hint:{'x':0, 'y':0.25}
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Password:'
+            outline_color: (0,0,1)
+            outline_width: 1
+            font_size: 25
+            pos_hint:{'x':-0.22, 'y':0.01}
+            color: (1,1,1)
+
+        TextInput:
+            multiline: False
+            size_hint: (0.4,0.06)
+            pos_hint: {'x':0.34,'y':0.58}
+            font_size: 20
+    
+        TextInput:
+            id: password
+            multiline: False
+            size_hint: (0.4,0.06)
+            pos_hint: {'x':0.34,'y':0.48}
+            font_size:20
+            password: True
+
+        Label:
+            id: output_label
+            text:''
+
+<StudentRegister>:
+
+    name: 'studentregister'
+    textinput: username
+##    password: password
+    textinput: password
+
+    FloatLayout:
+
+        size: root.width,root.height
+            
+        RoundedButton:
+            markup: True
+            text: '[font=times]Back[/font]'
+            font_size: 25
+            size_hint:(0.13,0.08)
+            pos_hint:{'x':0.82, 'y':0.85}
+            on_press: print('Back')
+            on_release:
+                app.root.current = 'titlemenu'
+                root.manager.transition.direction='left'
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Register[/font]'
+            font_size: 25
+            size_hint: (0.15,0.1)
+            pos_hint:{'x':0.68, 'y':0.25}
+            on_press: print('studentmenu')
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction='right'
+
+        Label:
+            markup: True
+            text: 'Show Password'
+            font_size: 20
+            outline_color: (0,0,1)
+            outline_width: 1
+            pos_hint: {'x':0.16, 'y':-0.05}
+
+        CheckBox:
+            id: showpassword
+            on_press: root.showpassword()
+            size_hint: (0.2,0.2)
+            pos_hint: {'x':0.485, 'y':0.35}
+
+  
+                    
+        Label:
+            id: welcomestudentlogin
+            markup: True
+            text: 'Welcome Student!'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 50
+            pos_hint:{'x':0, 'y':0.4}
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Username:'
+            outline_color: (0,0,1)
+            outline_width: 1
+            font_size: 25
+            pos_hint:{'x':-0.22, 'y':0.11}
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Create your username and password'
+            outline_color: (0,0,1)
+            outline_width: 1
+            font_size: 30
+            pos_hint:{'x':0, 'y':0.25}
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Password:'
+            outline_color: (0,0,1)
+            outline_width: 1
+            font_size: 25
+            pos_hint:{'x':-0.22, 'y':0.01}
+            color: (1,1,1)
+
+        TextInput:
+            multiline: False
+            size_hint: (0.4,0.06)
+            pos_hint: {'x':0.34,'y':0.58}
+            font_size: 20
+    
+        TextInput:
+            id: password
+            multiline: False
+            size_hint: (0.4,0.06)
+            pos_hint: {'x':0.34,'y':0.48}
+            font_size:20
+            password: True
+
+        Label:
+            id: output_label
+            text:''
+
+    
+<StudentMainMenu>:
+    name: 'studentmainmenu'
+
+    FloatLayout:
+
+        size: root.width,root.height
+
+        Label:
+            markup: True
+            text: 'RevisePro'
+            font_size: 80
+            pos_hint:{'x':-0.2, 'y':0.3}
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            color: (1,1,1)
+
+        Label:
+            markup: True
+            text: 'Subjects'
+            font_size: 40
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            pos_hint:{'x':-0.38, 'y':0.1}
+            color: (1,1,1)
+        Label:
+            markup: True
+            text: 'Reflection'
+            font_size: 40
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            pos_hint:{'x':-0.37, 'y':-0.25}
+            color: (1,1,1)
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Log out[/font]'
+            font_size: 25
+            size_hint:(0.12,0.08)
+            pos_hint:{'x':0.03, 'y':0.89}
+            on_press: print('logout')
+            on_release:
+                Factory.MyPopup().open()
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Biology[/font]'
+            size_hint:(0.18,0.1)
+            font_size: 25
+            pos_hint:{'x':0.1, 'y':0.4}
+            on_press: print('Biology')
+            on_release:
+                app.root.current= 'biology'
+                root.manager.transition.direction='right'
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Chemistry[/font]'
+            font_size: 25
+            size_hint:(0.18,0.1)     
+            pos_hint:{'x':0.32, 'y':0.4}
+            on_press: print('Chemistry')
+            on_release:
+                app.root.current= 'chemistry'
+                root.manager.transition.direction= 'right'
+
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Physics[/font]'
+            font_size: 25
+            size_hint:(0.18,0.1)
+            pos_hint:{'x':0.54, 'y':0.4}
+            on_press: print('Physics')
+            on_release:
+                Factory.MyPopup().open()
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Maths[/font]'
+            font_size: 25
+            size_hint:(0.18,0.1)
+            pos_hint:{'x':0.75, 'y':0.4}
+            on_press: print('Maths')
+            on_release:
+                Factory.MyPopup().open()
+
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Progress[/font]'
+            font_size: 25
+            size_hint:(0.2,0.1)
+            pos_hint:{'x':0.15, 'y':0.1}
+            on_press: print('Progress')
+            on_release:
+                Factory.MyPopup().open()
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Mental Health[/font]'
+            font_size: 25
+            size_hint:(0.2,0.1)
+            pos_hint:{'x':0.4, 'y':0.1}
+            on_press: print('Mental Health')
+            on_release:
+                Factory.MyPopup().open()
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Study Tips[/font]'
+            font_size: 25
+            size_hint:(0.2,0.1)
+            pos_hint:{'x':0.65, 'y':0.1}
+            on_press: print('Study Tips')
+            on_release:
+                Factory.MyPopup().open()
+
+<Biology>:
+
+    name: 'biology'
+
+    FloatLayout:
+
+        size: root.width,root.height
+
+        Label:
+            markup: True
+            text: 'Biology'
+            font_size: 90
+            pos_hint: {'x':0,'y':0.35}
+            bold: True
+            underline: True
+            color: (1,1,1)
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Back[/font]'
+            font_size: 25
+            size_hint:(0.12,0.08)
+            pos_hint:{'x':0.83, 'y':0.89}
+            on_press: print('Back to studentmenu')
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction='left'
+##
+##
+<Chemistry>:
+
+    name: 'chemistry'
+
+    FloatLayout:
+
+        size: root.width,root.height
+        
+        Label:
+            markup: True
+            text: 'Chemistry'
+            font_size: 80
+            bold: True
+            underline: True
+            pos_hint: {'x':0,'y':0.35}
+
+        RoundedButton:
+            markup: True
+            text: '[font=times]Back[/font]'
+            font_size: 25
+            size_hint:(0.12,0.08)
+            pos_hint:{'x':0.83, 'y':0.89}
+            on_press: print('logout')
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction='left'
+                
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##<RevisePro>
+##
+##    FloatLayout:
+##            
+##        size: root.width,root.height
+##            
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Student Login[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.2, 'y':0.5}
+##            on_press: print('Student Login!')
+##            
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Student Register[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.2, 'y':0.3}
+##            on_press: print('Student Register!')
+##            
+##
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Parent Login[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.6, 'y':0.5}
+##            on_press: print('Parent login!')
+##
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Parent Register[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.6, 'y':0.3}
+##            on_press: print('Parent Register!')
+##
+##        RoundedButton:
+##            markup: True
+##            text: '[font=times]Exit[/font]'
+##            font_size: 20
+##            pos_hint:{'x':0.4, 'y':0.1}
+##            on_press: print('Exit')
+##
+##        Label:
+##            markup: True
+##            text: '[font=times]RevisePro[/font]'
+##            font_size: 80
+##            pos_hint:{'x':0, 'y':0.35}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: '[font=times]Student[/font]'
+##            font_size: 60
+##            pos_hint:{'x':-0.2, 'y':0.2}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: '[font=times]Parent[/font]'
+##            font_size: 60
+##            pos_hint:{'x':0.2, 'y':0.2}
+##            color: (1,1,1)
+##
+##<RoundedButton@Button>
+##    background_color: (0,0,0,0)
+##    background_normal:''
+##    canvas.before:
+##        Color:
+##            rgba:(160/255, 189/255, 247/255)
+##        RoundedRectangle:
+##            size: self.size
+##            pos: self.pos
+##            radius: [18]
+
+            
+            
