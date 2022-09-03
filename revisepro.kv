@@ -1,11 +1,14 @@
 ##All the windows in my program
 WindowManager:                            
-    TitleMenu:
-    StudentLogin:
-    StudentRegister:
-    StudentMainMenu:
+##    TitleMenu:
+##    StudentLogin:
+##    StudentRegister:
+##    StudentMainMenu:
     Biology:
-    Chemistry:
+##    Chemistry:
+##    Physics:
+##    Maths:
+    Cells:
 
 ##Common Button atributes
 <Button>
@@ -14,68 +17,225 @@ WindowManager:
     color: (0,0,0)
 ##    background_color: (68/255, 255/255, 255/255)
 
-
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
 #:import Factory kivy.factory.Factory
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+#: import SwapTransition kivy.uix.screenmanager.SwapTransition
+
 
 <MyPopup@Popup>
+    id: MyPopup
     auto_dismiss: False
-    title: 'Do you wish to log out ?'
-    size_hint:(0.4,0.6)
+    size_hint:(0.45,0.45)
+    title: ""
+    separator_height: 0
+    opacity:1
+    
+    FloatLayout:
 
-    BoxLayout:
-        Button:
+        Label:
+            text: 'Are you sure you want to log out?'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0, 'y':0.45}
+            color: (1,1,1)
+
+        Label:
+            text: 'You have completed:'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0, 'y':0.26}
+            color: (1,1,1)        
+
+        StrokeButton:
+            pos_hint:{'x':0.15,'y':0.1}
+            size_hint: (0.3,0.2)
+            font_size: 25
+            font_name: 'Amaranth-Regular'
+            back_color: (244/255, 46/255, 23/255,255/255)
             on_release:
                 app.root.current = 'titlemenu'
                 root.dismiss()
             text:'Log Out'
 
-        Button:
+        StrokeButton:
+            pos_hint: {'x':0.55,'y':0.1}
+            size_hint: (0.3,0.2)
+            font_size: 25
+            font_name: 'Amaranth-Regular'
+            back_color: (50/255, 205/255, 50/255,255/255)
             on_release:
                 app.root.current= 'studentmainmenu'
                 root.dismiss()
             text:'Go Back'
+
+<Error>:
+    id: MyPopup
+    auto_dismiss: False
+    size_hint:(0.45,0.45)
+    title: ""
+    separator_height: 0
+    opacity:1
+    
+    FloatLayout:
+
+        Label:
+            text: 'Password invalid'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0, 'y':0.45}
+            color: (1,1,1)
+
+        StrokeButton:
+            pos_hint:{'x':0.15,'y':0.1}
+            size_hint: (0.3,0.2)
+            font_size: 25
+            font_name: 'Amaranth-Regular'
+            back_color: (244/255, 46/255, 23/255,255/255)
+            on_release:
+                app.root.current = 'studentlogin'
+                root.dismiss()
+            text:'Go back'
+
+##<Valid>:
+##    id: MyPopup
+##    auto_dismiss: False
+##    size_hint:(0.45,0.45)
+##    title: ""
+##    separator_height: 0
+##    opacity:1
+##    
+##    FloatLayout:
+##
+##        Label:
+##            text: 'Password valid'
+##            font_size: 30
+##            bold: True
+##            outline_color: (0,0,0)
+##            font_name: 'Amaranth-Regular'
+##            outline_width: 2
+##            pos_hint:{'x':0, 'y':0.45}
+##            color: (1,1,1)
+##
+##        StrokeButton:
+##            pos_hint:{'x':0.15,'y':0.1}
+##            size_hint: (0.3,0.2)
+##            font_size: 25
+##            font_name: 'Amaranth-Regular'
+##            back_color: (244/255, 46/255, 23/255,255/255)
+##            on_release:
+##                app.root.current = 'titlemenu'
+##                root.dismiss()
+##            text:'Go back'
+
+
             
-
-
 ##The rounder shape of the rectangle buttons
 <RoundedButton@Button>
     background_color: (0,0,0,0)
     background_normal:''
     canvas.before:
-##        Color:
-##            rgba:(0,0,0,0)
+        Color:
+            rgba:(1,1,1,1)
         RoundedRectangle:
             size: self.size
             pos: self.pos
             ##determine how round the buttons are gonna be
             radius: [18]
 
+
+<StrokeButton@Button>
+    background_color: (0,0,0,0)
+    background_normal:''
+    back_color: (1,1,1,1)
+    border_radius: 18
+    color: self.back_color
+    bold: True
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        Line:
+            rounded_rectangle:(self.pos[0],self.pos[1],self.size[0],self.size[1],self.border_radius)
+            width: 1.5
+##
+##<RoundedTextInput@TextInput>
+##    foreground_color: [0,0,0,0]
+##    background_color: [0,0,0,0]
+##    background_normal: ""
+##    background_active: ""
+##    canvas.before:
+##        Color:
+##            rbga: 1,1,1,1
+##        RoundedRectangle:
+##            size: self.size
+##            pos: self.pos
+##            radius: 10,
+            
 ## Title Menu window    
 <TitleMenu>:
 
     ##Name of each window to refer to buttons 
     name: 'titlemenu'
 
+    Image:
+        source: 'NEA background/geo.jpg'
+        allow_stretch: True
+        keep_ratio: False
+
+        
     FloatLayout:
 
         size: root.width,root.height
-            
-        RoundedButton: 
+
+##        canvas:
+##            Color:
+##                rgba: (0,0,0,)
+##
+##            RoundedRectangle:
+##                source: 'Logos/simple.png'
+##                radius: [30]
+##                size: 320,162
+##                pos: 465,460
+        
+        
+        StrokeButton: 
             markup: True
-            text: '[font=times]Student Login[/font]'
-            font_size: 20
-            pos_hint:{'x':0.4, 'y':0.5}
+            text: 'Login'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 35
+            font_name: 'Amaranth-Regular' 
+            pos_hint:{'x':0.25, 'y':0.4}
             ##Giving Button functions
-            on_press: print('Student Login!')
+            on_press: print('Login!')
             on_release:
                 app.root.current = 'studentlogin'
                 root.manager.transition.direction= 'right'
             
-        RoundedButton:
+        StrokeButton:
             markup: True
-            text: '[font=times]Student Register[/font]'
-            font_size: 20
-            pos_hint:{'x':0.4, 'y':0.3}
+            text: 'Exit'
+            color: (1,1,1)
+            back_color: (244/255, 46/255, 23/255,255/255)
+            bold: True
+            outline_color: (244/255, 46/255, 23/255,255/255)
+            outline_width: 0.5
+            font_size: 35
+            bold: True
+            font_name: 'Amaranth-Regular' 
+            size_hint: (0.15,0.08)
+            pos_hint:{'x':0.405, 'y':0.1}
             ##Giving Button functions       
             on_press: print('Student Register!')
             on_release:
@@ -83,64 +243,44 @@ WindowManager:
                 root.manager.transition.direction= 'right'
             
 
-##        RoundedButton:
-##            markup: True
-##            text: '[font=times]Parent Login[/font]'
-##            font_size: 20
-##            pos_hint:{'x':0.6, 'y':0.5}
-##            ##Giving Button functions
-##            on_press: print('Parent login!')
-##            on_release:
-##                app.root.current = 'parentlogin'
-##                root.manager.transition.direction= 'left'
-##
-##        RoundedButton:
-##            markup: True
-##            text: '[font=times]Parent Register[/font]'
-##            font_size: 20
-##            pos_hint:{'x':0.6, 'y':0.3}
-##            ##Giving Button functions
-##            on_press: print('Parent Register!')
-##            on_release:
-##                app.root.current = 'parentregister'
-##                root.manager.transition.direction= 'left'
-
-        RoundedButton:
+        StrokeButton:
             markup: True
-            text: '[font=times]Exit[/font]'
-            font_size: 20
-            pos_hint:{'x':0.4, 'y':0.1}
-            on_press: exit()
+            text: 'Register'
+            font_size: 35
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular' 
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            pos_hint:{'x':0.525, 'y':0.4}
+            on_press: print('Student Register!')
+            on_release:
+                app.root.current = 'studentregister'
+                root.manager.transition.direction= 'left'
 
         Label:
             markup: True
             text: 'RevisePro'
-            font_size: 80
-            pos_hint:{'x':0, 'y':0.35}
-            bold: True
-            outline_color: (0,0,0)
-            outline_width: 2
+            font_size: 77.9
+            font_name: 'sforsoncasualshaded'
+            pos_hint:{'x':0, 'y':0.3}
+            color: (0,0,0)
+
+        Label:
+            markup: True
+            text: 'Welcome to RevisePro your studying companion!'
+            font_size: 32
+            font_name: 'Amaranth-Regular'            
+            pos_hint:{'x':0, 'y':0.15}
             color: (1,1,1)
 
-##        Label:
-##            markup: True
-##            text: 'Student'
-##            font_size: 60
-##            bold: True
-##            outline_color: (0,0,0)
-##            outline_width: 2
-##            pos_hint:{'x':-0.2, 'y':0.2}
-##            color: (1,1,1)
-
-##        Label:
-##            markup: True
-##            text: 'Parent'
-##            bold: True
-##            outline_color: (0,0,0)
-##            outline_width: 2
-##            font_size: 60
-##            pos_hint:{'x':0.2, 'y':0.2}
-##            color: (1,1,1)
+        Label:
+            markup: True
+            text: 'Enchance your education today by logging in or registering!'
+            font_name: 'Amaranth-Regular'
+            font_size: 32
+            pos_hint:{'x':0, 'y':0.1}
+            color: (1,1,1)
 
 ## Student Login window 
 <StudentLogin>:
@@ -148,217 +288,343 @@ WindowManager:
     name: 'studentlogin'
 
     ## For 'Show Password' function
-    textinput: password
-    #username: username
-    password: password
-    
+##    textinput: password
+##    #username: username
+##    password: password
+##    popup: 
+
+    Image:
+        source: 'NEA background/geo.jpg'
+        allow_stretch: True
+        keep_ratio: False
+
     FloatLayout:
-
-
         size: root.width,root.height
-            
-        RoundedButton:
+
+        canvas:
+            Color:
+                rgba: (0,0,0,0.5)
+
+            RoundedRectangle:
+                radius: [18]
+                size: 650,300
+                pos: 318,180
+##
+#####Buttons            
+
+        StrokeButton:
             markup: True
-            text: '[font=times]Back[/font]'
-            font_size: 25
+            text: 'Back'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
             size_hint:(0.13,0.08)
+            font_name: 'Amaranth-Regular' 
             pos_hint:{'x':0.82, 'y':0.85}
             on_press: print('Back')
             on_release:
                 app.root.current = 'titlemenu'
                 root.manager.transition.direction='left'
 
-        RoundedButton:
+        StrokeButton:
+            id: start
             markup: True
-            text: '[font=times]Login[/font]'
-            font_size: 25
+            text: 'Login'
+            font_size: 35
+            font_name: 'Amaranth-Regular' 
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
             size_hint: (0.15,0.1)
-            pos_hint:{'x':0.68, 'y':0.25}
-            on_press: print('studentmenu')
+            pos_hint:{'x':0.6, 'y':0.15}
+            on_press:
+                print('studentmenu')
             on_release:
                 app.root.current= 'studentmainmenu'
-                root.manager.transition.direction='right'
-
-        Label:
-            markup: True
-            text: 'Show Password'
-            font_size: 20
-            outline_color: (0,0,1)
-            outline_width: 1
-            pos_hint: {'x':0.16, 'y':-0.05}
-
-        CheckBox:
-            id: showpassword
-            on_press: root.showpassword()
-            size_hint: (0.2,0.2)
-            pos_hint: {'x':0.485, 'y':0.35}
-
-  
-                    
+                root.manager.transition.direction='up'
+##                root.validate()
+#####CheckBox
+##
+##        CheckBox:
+##            id: showpassword
+##            on_press: root.showpassword()
+##            size_hint: (0.2,0.2)
+##            pos_hint: {'x':0.485, 'y':0.25}
+##
+##### Labels                      
+##
         Label:
             id: welcomestudentlogin
             markup: True
-            text: 'Welcome Student!'
+            text: 'Student Login!'
             bold: True
             outline_color: (0,0,0)
             outline_width: 2
             font_size: 50
+            font_name: 'Amaranth-Regular'
             pos_hint:{'x':0, 'y':0.4}
             color: (1,1,1)
 
-        Label:
-            markup: True
-            text: 'Username:'
-            outline_color: (0,0,1)
-            outline_width: 1
-            font_size: 25
-            pos_hint:{'x':-0.22, 'y':0.11}
-            color: (1,1,1)
+##        Label:
+##            markup: True
+##            text: 'Username'
+##            outline_color: (67/255, 143/255, 230/255)
+##            bold: True
+##            font_name: 'Amaranth-Regular'
+##            outline_width: 2
+##            font_size: 30
+##            pos_hint:{'x':0, 'y':0.155}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: 'Enter your username and password'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            font_name: 'Amaranth-Regular'
+##            font_size: 40
+##            pos_hint:{'x':0, 'y':0.3}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: 'Password'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            font_name: 'Amaranth-Regular'
+##            font_size: 30
+##            pos_hint:{'x':-0, 'y':0}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: 'Show Password'
+##            halign: 'center'
+##            font_size: 25
+##            font_name: 'Amaranth-Regular'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            pos_hint: {'x':0.16, 'y':-0.15}
+##
+####TextInputs
+##            
+##        TextInput:
+##            id: username
+##            multiline: False
+##            size_hint: (0.4,0.06)
+##            pos_hint: {'x':0.3,'y':0.56}
+##            font_size: 20
+##            color: (0,0,0,0)
+##            border_radius: 18
+##            halign: 'center'
+##            valign: 'middle'
+##    
+##        TextInput:
+##            id: password
+##            multiline: False
+##            size_hint: (0.4,0.06)
+##            pos_hint: {'x':0.3,'y':0.4}
+##            font_size:20
+##            password: True
+##            halign: 'center'
+##            valign: 'middle'
+##
+####        Popup:
+####            id: wrong
+####            auto_dismiss: False
+####            size_hint:(0.45,0.45)
+####            title: ""
+####            separator_height: 0
+####            opacity:1
+####    
+####
+####            FloatLayout:
+####
+####                Label:
+####                    text: 'Go back'
+####
+####                Button:
+####                    text: 'BACK'
+####                    on_release:
+####                        app.root.current= 'titlemenu'
+##                
 
-        Label:
-            markup: True
-            text: 'Enter your username and password'
-            outline_color: (0,0,1)
-            outline_width: 1
-            font_size: 30
-            pos_hint:{'x':0, 'y':0.25}
-            color: (1,1,1)
 
-        Label:
-            markup: True
-            text: 'Password:'
-            outline_color: (0,0,1)
-            outline_width: 1
-            font_size: 25
-            pos_hint:{'x':-0.22, 'y':0.01}
-            color: (1,1,1)
-
-        TextInput:
-            multiline: False
-            size_hint: (0.4,0.06)
-            pos_hint: {'x':0.34,'y':0.58}
-            font_size: 20
-    
-        TextInput:
-            id: password
-            multiline: False
-            size_hint: (0.4,0.06)
-            pos_hint: {'x':0.34,'y':0.48}
-            font_size:20
-            password: True
-
-        Label:
-            id: output_label
-            text:''
-
+            
 <StudentRegister>:
 
     name: 'studentregister'
-    textinput: username
-##    password: password
-    textinput: password
+##    textinput: username
+####    password: password
+##    textinput: password
+##    textinput: confirmpassword
+
+    Image:
+        source: 'NEA background/geo.jpg'
+        allow_stretch: True
+        keep_ratio: False
 
     FloatLayout:
-
         size: root.width,root.height
-            
-        RoundedButton:
+
+        canvas:
+            Color:
+                rgba: (0,0,0,0.5)
+
+            RoundedRectangle:
+                radius: [18]
+                size: 650,350
+                pos: 318,140
+
+#####Buttons            
+
+        StrokeButton:
             markup: True
-            text: '[font=times]Back[/font]'
-            font_size: 25
+            text: 'Back'
+            font_size: 30
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
             size_hint:(0.13,0.08)
-            pos_hint:{'x':0.82, 'y':0.85}
+            pos_hint:{'x':0.03, 'y':0.85}
             on_press: print('Back')
             on_release:
                 app.root.current = 'titlemenu'
-                root.manager.transition.direction='left'
-
-        RoundedButton:
-            markup: True
-            text: '[font=times]Register[/font]'
-            font_size: 25
-            size_hint: (0.15,0.1)
-            pos_hint:{'x':0.68, 'y':0.25}
-            on_press: print('studentmenu')
-            on_release:
-                app.root.current= 'studentmainmenu'
                 root.manager.transition.direction='right'
 
-        Label:
+        StrokeButton:
+            id: start
             markup: True
-            text: 'Show Password'
-            font_size: 20
-            outline_color: (0,0,1)
-            outline_width: 1
-            pos_hint: {'x':0.16, 'y':-0.05}
-
-        CheckBox:
-            id: showpassword
-            on_press: root.showpassword()
-            size_hint: (0.2,0.2)
-            pos_hint: {'x':0.485, 'y':0.35}
-
-  
-                    
+            text: 'Register'
+            font_size: 35
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            size_hint: (0.15,0.1)
+            pos_hint:{'x':0.6, 'y':0.1}
+            on_press:
+                print('studentmenu')
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction='up'
+#####CheckBox
+##
+##        CheckBox:
+##            id: showpassword
+##            on_press: root.showpassword()
+##            size_hint: (0.2,0.2)
+##            pos_hint: {'x':0.485, 'y':0.1}
+##
+##### Labels                      
         Label:
             id: welcomestudentlogin
             markup: True
-            text: 'Welcome Student!'
+            text: 'Student Register!'
             bold: True
             outline_color: (0,0,0)
             outline_width: 2
             font_size: 50
+            font_name: 'Amaranth-Regular'
             pos_hint:{'x':0, 'y':0.4}
             color: (1,1,1)
-
-        Label:
-            markup: True
-            text: 'Username:'
-            outline_color: (0,0,1)
-            outline_width: 1
-            font_size: 25
-            pos_hint:{'x':-0.22, 'y':0.11}
-            color: (1,1,1)
-
-        Label:
-            markup: True
-            text: 'Create your username and password'
-            outline_color: (0,0,1)
-            outline_width: 1
-            font_size: 30
-            pos_hint:{'x':0, 'y':0.25}
-            color: (1,1,1)
-
-        Label:
-            markup: True
-            text: 'Password:'
-            outline_color: (0,0,1)
-            outline_width: 1
-            font_size: 25
-            pos_hint:{'x':-0.22, 'y':0.01}
-            color: (1,1,1)
-
-        TextInput:
-            multiline: False
-            size_hint: (0.4,0.06)
-            pos_hint: {'x':0.34,'y':0.58}
-            font_size: 20
-    
-        TextInput:
-            id: password
-            multiline: False
-            size_hint: (0.4,0.06)
-            pos_hint: {'x':0.34,'y':0.48}
-            font_size:20
-            password: True
-
-        Label:
-            id: output_label
-            text:''
-
-    
+##
+##        Label:
+##            markup: True
+##            text: 'Username'
+##            outline_color: (67/255, 143/255, 230/255)
+##            bold: True
+##            font_name: 'Amaranth-Regular'
+##            outline_width: 2
+##            font_size: 30
+##            pos_hint:{'x':0, 'y':0.19}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: 'Create your username and password'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            font_name: 'Amaranth-Regular'
+##            font_size: 40
+##            pos_hint:{'x':0, 'y':0.3}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: 'Password'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            font_name: 'Amaranth-Regular'
+##            font_size: 30
+##            pos_hint:{'x':-0, 'y':0.03}
+##            color: (1,1,1)
+##
+##        Label:
+##            markup: True
+##            text: 'Show Password'
+##            halign: 'center'
+##            font_size: 25
+##            font_name: 'Amaranth-Regular'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            pos_hint: {'x':0.16, 'y':-0.25}
+##
+##        Label:
+##            markup: True
+##            text: 'Confirm Password'
+##            halign: 'center'
+##            font_size: 30
+##            font_name: 'Amaranth-Regular'
+##            outline_color: (67/255, 143/255, 230/255)
+##            outline_width: 2
+##            pos_hint: {'x':0, 'y':-0.12}
+##
+####TextInputs
+##            
+##        TextInput:
+##            id: username
+##            multiline: False
+##            size_hint: (0.4,0.06)
+##            pos_hint: {'x':0.3,'y':0.585}
+##            font_size: 20
+##            color: (0,0,0,0)
+##            border_radius: 18
+##            halign: 'center'
+##            valign: 'middle'
+##    
+##        TextInput:
+##            id: password
+##            multiline: False
+##            size_hint: (0.4,0.06)
+##            pos_hint: {'x':0.3,'y':0.43}
+##            font_size:20
+##            password: True
+##            halign: 'center'
+##            valign: 'middle'
+##            
+##        TextInput:
+##            id: confirmpassword
+##            multiline: False
+##            size_hint: (0.4,0.06)
+##            pos_hint: {'x':0.3,'y':0.28}
+##            font_size:20
+##            password: True
+##            halign: 'center'
+##            valign: 'middle'
+##            
+##            
+##
+            
 <StudentMainMenu>:
     name: 'studentmainmenu'
+
+    Image:
+        source: 'NEA background/geo.jpg'
+        allow_stretch: True
+        keep_ratio: False
 
     FloatLayout:
 
@@ -367,47 +633,61 @@ WindowManager:
         Label:
             markup: True
             text: 'RevisePro'
-            font_size: 80
-            pos_hint:{'x':-0.2, 'y':0.3}
-            bold: True
-            outline_color: (0,0,0)
-            outline_width: 2
-            color: (1,1,1)
+            font_size: 77
+            pos_hint:{'x':-0.25, 'y':0.26}
+            font_size: 77.8
+            font_name: 'sforsoncasualshaded'
+            color: (0,0,0)
 
         Label:
             markup: True
             text: 'Subjects'
-            font_size: 40
+            font_size: 50
+            font_name: 'Amaranth-Regular'
             bold: True
             outline_color: (0,0,0)
             outline_width: 2
-            pos_hint:{'x':-0.38, 'y':0.1}
+            pos_hint:{'x':-0.38, 'y':0.08} 
             color: (1,1,1)
         Label:
             markup: True
             text: 'Reflection'
-            font_size: 40
+            font_size: 50
+            font_name: 'Amaranth-Regular'
             bold: True
             outline_color: (0,0,0)
             outline_width: 2
-            pos_hint:{'x':-0.37, 'y':-0.25}
+            pos_hint:{'x':-0.37, 'y':-0.22} 
             color: (1,1,1)
 
-        RoundedButton:
+        StrokeButton:
             markup: True
-            text: '[font=times]Log out[/font]'
-            font_size: 25
+            text: 'Log out'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
             size_hint:(0.12,0.08)
             pos_hint:{'x':0.03, 'y':0.89}
-            on_press: print('logout')
+            on_press:
+                print('logout')
+##                app.start_stop()
             on_release:
                 Factory.MyPopup().open()
 
         RoundedButton:
             markup: True
-            text: '[font=times]Biology[/font]'
+            text: 'Biology'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            back_color: (50/255, 205/255, 50/255)
+            outline_color: (50/255, 205/255, 50/255)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.18,0.1)
-            font_size: 25
             pos_hint:{'x':0.1, 'y':0.4}
             on_press: print('Biology')
             on_release:
@@ -416,8 +696,13 @@ WindowManager:
 
         RoundedButton:
             markup: True
-            text: '[font=times]Chemistry[/font]'
-            font_size: 25
+            text: 'Chemistry'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (255/255, 139/255, 40/255)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.18,0.1)     
             pos_hint:{'x':0.32, 'y':0.4}
             on_press: print('Chemistry')
@@ -428,51 +713,78 @@ WindowManager:
 
         RoundedButton:
             markup: True
-            text: '[font=times]Physics[/font]'
-            font_size: 25
+            text: 'Physics'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (119/255, 55/255, 191/255)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.18,0.1)
             pos_hint:{'x':0.54, 'y':0.4}
             on_press: print('Physics')
             on_release:
-                Factory.MyPopup().open()
+                app.root.current= 'physics'
+                root.manager.transition.direction='left'
 
         RoundedButton:
             markup: True
-            text: '[font=times]Maths[/font]'
-            font_size: 25
+            text: 'Maths'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (54/255, 144/255, 247/255)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.18,0.1)
             pos_hint:{'x':0.75, 'y':0.4}
             on_press: print('Maths')
             on_release:
-                Factory.MyPopup().open()
+                app.root.current= 'maths'
+                root.manager.transition.direction='left'
 
 
-        RoundedButton:
+        StrokeButton:
             markup: True
-            text: '[font=times]Progress[/font]'
-            font_size: 25
+            text: 'Progress'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.2,0.1)
-            pos_hint:{'x':0.15, 'y':0.1}
+            pos_hint:{'x':0.15, 'y':0.12}
             on_press: print('Progress')
             on_release:
                 Factory.MyPopup().open()
 
-        RoundedButton:
+        StrokeButton:
             markup: True
-            text: '[font=times]Mental Health[/font]'
-            font_size: 25
+            text: 'Mental Health'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.2,0.1)
-            pos_hint:{'x':0.4, 'y':0.1}
+            pos_hint:{'x':0.4, 'y':0.12}
             on_press: print('Mental Health')
             on_release:
                 Factory.MyPopup().open()
 
-        RoundedButton:
+        StrokeButton:
             markup: True
-            text: '[font=times]Study Tips[/font]'
-            font_size: 25
+            text: 'Study Tips'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 32
             size_hint:(0.2,0.1)
-            pos_hint:{'x':0.65, 'y':0.1}
+            pos_hint:{'x':0.65, 'y':0.12}
             on_press: print('Study Tips')
             on_release:
                 Factory.MyPopup().open()
@@ -481,67 +793,779 @@ WindowManager:
 
     name: 'biology'
 
+    Image:
+        source: 'NEA background/newgreen.jpg'
+        allow_stretch: True
+        keep_ratio: False
+
+
+
     FloatLayout:
 
         size: root.width,root.height
 
-        Label:
-            markup: True
-            text: 'Biology'
-            font_size: 90
-            pos_hint: {'x':0,'y':0.35}
-            bold: True
-            underline: True
-            color: (1,1,1)
+        canvas:
 
-        RoundedButton:
+            Color:
+                rgb: 1, 1, 1
+            Ellipse:
+                pos: 750, 320
+                size: 230 , 230
+                source: 'Subject Pictures/tiger.JPG'
+                angle_start: 0
+                angle_end: 360
+                
+            Ellipse:
+                pos: 750, 50
+                size: 230 , 230
+                source: 'Subject Pictures/bee 2.JPG'
+                angle_start: 0
+                angle_end: 360
+                
+            Ellipse:
+                pos: 990, 180
+                size: 230 , 230
+                source: 'Subject Pictures/dragonfly.JPG'
+                angle_start: 0
+                angle_end: 360
+
+        Label:
+            text:'Biology'
+            font_size: 72
+            pos_hint:{'x':0, 'y':0.38}
+            bold: True
+            outline_color: (0,0,0,0)
+            outline_width: 2
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1)
+            
+        StrokeButton:
             markup: True
-            text: '[font=times]Back[/font]'
-            font_size: 25
+            text: 'Back'
+            color: (1,1,1,1)
+            bold: True
+            font_name: 'Amaranth-Regular'
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
             size_hint:(0.12,0.08)
             pos_hint:{'x':0.83, 'y':0.89}
-            on_press: print('Back to studentmenu')
             on_release:
                 app.root.current= 'studentmainmenu'
-                root.manager.transition.direction='left'
-##
-##
+                root.manager.transition.direction= 'left'
+
+        StrokeButton: 
+            markup: True
+            text: 'Eukaryotic and \n Prokaryotic Cells'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            font_name: 'Amaranth-Regular'
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.07, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'cells'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Organ \n Systems'
+            halign:'center'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.3, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Plants and \n Bioenergetics'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.07, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Diseases and \n infections'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.3, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Genetics and \n Evolution'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.18, 'y':0.05}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+                
+##        Image:
+##            source: 'Subject Pictures/tiger.JPG'
+##            size_hint:(0.4,0.4)
+##            pos_hint:{'x':0.5, 'y':0.2}
+####            allow_stretch: True
+####            keep_ratio: False
+
 <Chemistry>:
 
     name: 'chemistry'
 
+    Image:
+        source: 'NEA background/neworange.jfif'
+        allow_stretch: True
+        keep_ratio: False
+
     FloatLayout:
 
         size: root.width,root.height
-        
-        Label:
-            markup: True
-            text: 'Chemistry'
-            font_size: 80
-            bold: True
-            underline: True
-            pos_hint: {'x':0,'y':0.35}
 
-        RoundedButton:
+        canvas:
+
+            Color:
+                rgb: 1, 1, 1
+                
+            RoundedRectangle:
+                source: 'Subject Pictures/pt.jpg'
+                radius: [18]
+                size: 450,225
+                pos: 750,290
+                
+            RoundedRectangle:
+                source: 'Subject Pictures/lab.jpg'
+                radius: [18]
+                size: 450,225
+                pos: 750,25
+        Label:
+            text:'Chemistry'
+            font_size: 72
+            pos_hint:{'x':0, 'y':0.38}
+            bold: True
+            outline_color: (0,0,0,0)
+            outline_width: 2
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1)
+            
+        StrokeButton:
             markup: True
-            text: '[font=times]Back[/font]'
-            font_size: 25
+            text: 'Back'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
             size_hint:(0.12,0.08)
             pos_hint:{'x':0.83, 'y':0.89}
-            on_press: print('logout')
             on_release:
                 app.root.current= 'studentmainmenu'
-                root.manager.transition.direction='left'
+                root.manager.transition.direction= 'left'
+
+        StrokeButton: 
+            markup: True
+            text: 'Atoms, Bonding \n and Moles'
+            halign:'center'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.07, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Chemical \n Reactions'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.3, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Energy changes \n and Equilibrium'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.07, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Organic \n Chemistry'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.3, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Earths \n Resources'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.18, 'y':0.05}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
                 
+##        Image:
+##            source: 'Subject Pictures/tiger.JPG'
+##            size_hint:(0.4,0.4)
+##            pos_hint:{'x':0.5, 'y':0.2}
+####            allow_stretch: True
+####            keep_ratio: False
+
+<Physics>:
+
+    name: 'physics'
+
+    Image:
+        source: 'NEA background/newpurple.jpg'
+        allow_stretch: True
+        keep_ratio: False
+    FloatLayout:
+
+        size: root.width,root.height
+
+        canvas:
+
+            Color:
+                rgb: 1, 1, 1
+            Ellipse:
+                pos: 290, 320
+                size: 230 , 230
+                source: 'Subject Pictures/earth 2.JPG'
+                angle_start: 0
+                angle_end: 360
+                
+            Ellipse:
+                pos: 290, 50
+                size: 230 , 230
+                source: 'Subject Pictures/atom 2.JPG'
+                angle_start: 0
+                angle_end: 360
+                
+            Ellipse:
+                pos: 50, 180
+                size: 230 , 230
+                source: 'Subject Pictures/electro.JPG'
+                angle_start: 0
+                angle_end: 360
+
+
+        Label:
+            text:'Physics'
+            font_size: 72
+            pos_hint:{'x':0, 'y':0.38}
+            bold: True
+            outline_color: (0,0,0,0)
+            outline_width: 2
+            font_name: 'Amaranth-Regular' 
+            color: (1,1,1)
+            
+        StrokeButton:
+            markup: True
+            text: 'Back'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.12,0.08)
+            pos_hint:{'x':0.04, 'y':0.89}
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Energy and \n energy resources'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.5, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Forces'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.73, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Waves and \n Electromagnetism'
+            halign:'center'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.5, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Particles and \n Molecules'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            font_name: 'Amaranth-Regular'
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.73, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Electricity'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.62, 'y':0.05}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+                
+<Maths>:
+
+    name: 'maths'
+
+    Image:
+        source: 'NEA background/newblue.jpg'
+        allow_stretch: True
+        keep_ratio: False
+
+    FloatLayout:
+
+        canvas:
+
+            Color:
+                rgb: 1, 1, 1
+                
+            RoundedRectangle:
+                source: 'Subject Pictures/numbers.jpg'
+                radius: [18]
+                size: 450,225
+                pos: 70,290
+                
+            RoundedRectangle:
+                source: 'Subject Pictures/golden ratio.webp'
+                radius: [18]
+                size: 450,225
+                pos: 70,25
+
+        size: root.width,root.height
+
+        Label:
+            text:'Maths'
+            font_size: 64
+            pos_hint:{'x':0, 'y':0.38}
+            bold: True
+            outline_color: (0,0,0,0)
+            outline_width: 2
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1)
+        StrokeButton:
+            markup: True
+            text: 'Back'
+            color: (1,1,1,1)
+            font_name: 'Amaranth-Regular'
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.12,0.08)
+            pos_hint:{'x':0.04, 'y':0.89}
+            on_release:
+                app.root.current= 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Number'
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.5, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Algebra'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.73, 'y':0.55}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Angles and \n Shapes'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.5, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Data handling and \n probability '
+            halign:'center'
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.73, 'y':0.3}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+        StrokeButton: 
+            markup: True
+            text: 'Graphs'
+            font_name: 'Amaranth-Regular'
+            halign:'center'
+            color: (1,1,1,1)
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            font_size: 30
+            size_hint:(0.2,0.2)
+            pos_hint:{'x':0.62, 'y':0.05}
+            ##Giving Button functions
+            on_release:
+                app.root.current = 'studentmainmenu'
+                root.manager.transition.direction= 'right'
+
+
+<Cells>:
+
+    name: 'cells'
+    
+    Image:
+        source: 'NEA background/newgreen.jpg'
+        allow_stretch: True
+        keep_ratio: False
+
+    DropDown:
+        pos_hint: {'x': 0.68, 'y': 0.43}
+        size_hint: (0.3,0.3)
+
+##        Label:
+##            text:'Other related topics:'
+##            font_size: 35
+##            font_name: 'Amaranth-Regular'
+##            underline: True
+##            outline_color: (0,0,0,0)
+##            outline_width: 2
+##            size_hint_y: None
+##            height: 44
+##            
+##                
+        StrokeButton:
+            text: 'Cell Division'
+            size_hint_y: None
+            font_size:25
+            height: 44
+            font_name: 'Amaranth-Regular'
+            on_release:
+                app.root.current = 'biology'
+                root.manager.transition.direction='left'
+
+        StrokeButton:
+            text: 'Cell Division'
+            size_hint_y: None
+            font_size:25
+            height: 44
+            font_name: 'Amaranth-Regular'
+            on_release:
+                app.root.current = 'biology'
+                root.manager.transition.direction='left'
+        StrokeButton:
+            text: 'Cell Division'
+            size_hint_y: None
+            font_size:25
+            height: 44
+            font_name: 'Amaranth-Regular'
+            on_release:
+                app.root.current = 'biology'
+                root.manager.transition.direction='left'
         
+                     
+        StrokeButton:
+            text: 'Cell Division'
+            size_hint_y: None
+            font_size:25
+            height: 44
+            font_name: 'Amaranth-Regular'
+            on_release:
+                app.root.current = 'biology'
+                root.manager.transition.direction='left'                
+        StrokeButton:
+            text: 'Cell Division'
+            size_hint_y: None
+            font_size:25
+            height: 44
+            font_name: 'Amaranth-Regular'
+            on_release:
+                app.root.current = 'biology'
+                root.manager.transition.direction='left'
+
+
+    FloatLayout:
+        size: root.width,root.height
+        canvas:
+            Color:
+                rgba: (0,0,0,0.5)
+
+            RoundedRectangle:
+                radius: [18]
+                size: 830,500
+                pos: 20,30
+
+        Label:
+            text:'Eukaryotic and Prokaryotic cells'
+            font_size: 64
+            pos_hint:{'x':0, 'y':0.38}
+            bold: True
+            outline_color: (0,0,0,0)
+            outline_width: 2
+            font_name: 'Amaranth-Regular'
+            color: (1,1,1)
+
+        Label:
+            text:'Other related topics:'
+            font_size: 35
+            font_name: 'Amaranth-Regular'
+            underline: True
+            outline_color: (0,0,0,0)
+            outline_width: 2
+            size_hint_y: None
+            pos_hint:{'x':0.33, 'y':0.7}
+            
+            
+        StrokeButton:
+            markup: True
+            text: 'Back'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            outline_width: 2
+            size_hint:(0.12,0.08)
+            font_name: 'Amaranth-Regular' 
+            pos_hint:{'x':0.855, 'y':0.88}
+            on_press: print('Back')
+            on_release:
+                app.root.current = 'biology'
+                root.manager.transition.direction='left'
+
+
+            Carousel:
+                size: 800,800
+                pos: 30,-100
+                direction:'right'
+
+                Image:
+                    source: 'Subject notes/Cells.png'
+                    size_hint: (0.95,0.95)
+                    pos_hint: {'center_x':0.5,'center_y':0.48}
+
+                    
+                Image:
+                    source: 'Subject notes/anim.png'
+                    size_hint: (0.98,0.98)
+                    pos_hint: {'center_x':0.5,'center_y':0.48}
+
+                Image:
+                    source: 'Subject notes/plant.png'
+                    size_hint: (0.98,0.98)
+                    pos_hint: {'center_x':0.5,'center_y':0.48}
+                
+
+            
 
 
 
 
-
-
-
-
+##    FloatLayout:
+##        size: root.width,root.height
+##        canvas:
+##            Color:
+##                rgba: (0,0,0,0.5)
+##
+##            RoundedRectangle:
+##                radius: [18]
+##                size: 830,500
+##                pos: 20,30
+##
+##
+##        Label:
+##            text:'Eukaryotic and Prokaryotic cells'
+##            font_size: 64
+##            pos_hint:{'x':0, 'y':0.38}
+##            bold: True
+##            outline_color: (0,0,0,0)
+##            outline_width: 2
+##            font_name: 'Amaranth-Regular'
+##            color: (1,1,1)
+##            
+##        StrokeButton:
+##            markup: True
+##            text: 'Back'
+##            font_size: 30
+##            bold: True
+##            outline_color: (0,0,0)
+##            outline_width: 2
+##            size_hint:(0.12,0.08)
+##            font_name: 'Amaranth-Regular' 
+##            pos_hint:{'x':0.855, 'y':0.88}
+##            on_press: print('Back')
+##            on_release:
+##                app.root.current = 'biology'
+##                root.manager.transition.direction='left'
+                
 
 
 
