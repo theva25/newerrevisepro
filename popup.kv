@@ -1,0 +1,534 @@
+
+## Contents of the eukaryotic cell multiple choice
+<Cells1>
+    id: cells1
+    ## Pop up isnt dismissed from any random clicks
+    auto_dismiss: False
+    ## Assigning the size of the popup
+    size_hint:(0.98,0.98)
+    title: ""
+    ## Removing the title from the popup
+    separator_height: 0
+    ## Popup at max visibility
+    opacity:1
+    
+    FloatLayout:
+        ## Rectangle layouts to seperate each multiple choice question
+        canvas:
+            Color:
+                rgba: (101/255,115/255,126/255,255/255)
+            ## 4 rounded rectangle layout as there are 4 questions in each popup
+            ## Bottom left
+            RoundedRectangle:
+                radius: [18]
+                size: 560,260
+                pos: 60,80
+
+            ## Top left
+            RoundedRectangle:
+                radius: [18]
+                size: 560,260
+                pos: 60 ,360
+            ## Top right
+            RoundedRectangle:
+                radius: [18]
+                size: 560,260
+                pos: 655,360
+            ## Bottom right
+            RoundedRectangle:
+                radius: [18]
+                size: 560,260
+                pos: 655,80
+
+##################################### TOP LEFT #################################
+
+        ## Checkbox for each answer
+        CheckBox:
+            ## 'id' for checkboxs to be called in function
+            id: right1
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.84}
+            ## When checkbox active it performs the 'root.deactivate' function
+            on_active:
+                root.right1()
+
+        CheckBox:
+            id: wrong1
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.76}
+            on_active:
+                root.wrong1()
+
+        CheckBox:
+            id: wrong2
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.67}
+            on_active:
+                root.wrong2()
+
+        CheckBox:
+            id: wrong3
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.57}
+            on_active:
+                root.wrong3()
+
+        Label:
+            text: 'Which organelle controls the cells activties?'
+            font_size: 25
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':-0.25, 'y':0.46}
+            color: (1,1,1)
+            outline_color: (0,0,0)
+            outline_width: 2
+            halign: 'center'
+
+        Label:
+            id: nucleus
+            text: 'Nucleus'
+            font_size: 23
+            bold: True
+            font_name: 'Amaranth-Regular'
+            pos_hint:{'x':-0.3, 'y':0.39}
+            color: (1,1,1)
+            outline_color: (0,0,0)
+            outline_width: 2
+            halign: 'center'
+
+        Label:
+            id: mitochondria1
+            text: 'Mitochondria'
+            font_size: 23
+            bold: True
+            font_name: 'Amaranth-Regular'
+            pos_hint:{'x':-0.3, 'y':0.31}
+            color: (1,1,1)
+            outline_color: (0,0,0)
+            outline_width: 2
+            halign: 'center'
+
+        Label:
+            id: cytoplasm
+            text: 'Cytoplasm'
+            font_size: 23
+            bold: True
+            font_name: 'Amaranth-Regular'
+            pos_hint:{'x':-0.3, 'y':0.22}
+            color: (1,1,1)
+            outline_color: (0,0,0)
+            outline_width: 2
+            halign: 'center'
+
+        Label:
+            id: ribosomes1
+            text: 'Ribosomes'
+            font_size: 23
+            bold: True
+            font_name: 'Amaranth-Regular'
+            pos_hint:{'x':-0.3, 'y':0.12}
+            color: (1,1,1)
+            outline_color: (0,0,0)
+            outline_width: 2
+            halign: 'center'
+
+
+###################################### BOTTOM LEFT#############################              
+
+        ## Checkbox for each answer
+        CheckBox:
+            ## 'id' for checkboxs to be called in function
+            id: wrong4
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.36}
+            ## When checkbox active it performs the 'root.deactivate' function
+            on_active: root.deactivate1()
+            on_release: root.change1()
+
+        CheckBox:
+            id: right2
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.28}
+            on_active: root.deactivate2()
+            on_release: root.change2()
+
+        CheckBox:
+            id: wrong5
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.19}
+            on_active: root.deactivate3()
+            on_release: root.change3()
+
+        CheckBox:
+            id: wrong6
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.05, 'y':0.1}
+            on_active:
+                root.deactivate4()
+                root.change4()
+
+        Label:
+            text: 'Where in the cell are proteins synthesised?'
+            font_size: 25
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':-0.25, 'y':-0.01}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: chloroplast
+            text: 'Chloroplast'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':-0.3, 'y':-0.09}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: ribosomes
+            text: 'Ribosomes'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':-0.3, 'y':-0.17}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: vacuole
+            text: 'Vacuole'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':-0.3, 'y':-0.26}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: mitochondria
+            text: 'Mitochondria'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':-0.3, 'y':-0.35}
+            color: (1,1,1)
+            halign: 'center'
+
+#################################### TOP RIGHT ###############################
+
+        ## Checkbox for each answer
+        CheckBox:
+            ## 'id' for checkboxs to be called in function
+            id: right3
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.84}
+            ## When checkbox active it performs the 'root.deactivate' function
+            on_active: root.deactivate1()
+            on_release: root.change1()
+
+        CheckBox:
+            id: wrong7
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.76}
+            on_active: root.deactivate2()
+            on_release: root.change2()
+
+        CheckBox:
+            id: wrong8
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.67}
+            on_active: root.deactivate3()
+            on_release: root.change3()
+
+        CheckBox:
+            id: wrong9
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.57}
+            on_active:
+                root.deactivate4()
+                root.change4()
+        Label:
+            text: 'Small circular pieces of DNA in a bacterial cell are called:'
+            font_size: 22
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.24, 'y':0.46}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: loosedna
+            text: 'Loose DNA'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':0.39}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: plasmid
+            text: 'Plasmid'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':0.31}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: ribosomes3
+            text: 'Ribosomes'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':0.22}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: enzymes
+            text: 'Enzymes'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':0.12}
+            color: (1,1,1)
+            halign: 'center'
+
+##################################### BOTTOM RIGHT ############################
+
+        ## Checkbox for each answer
+        CheckBox:
+            ## 'id' for checkboxs to be called in function
+            id: wrong4
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.36}
+            ## When checkbox active it performs the 'root.deactivate' function
+            on_active: root.deactivate1()
+            on_release: root.change1()
+
+        CheckBox:
+            id: right2
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.28}
+            on_active: root.deactivate2()
+            on_release: root.change2()
+
+        CheckBox:
+            id: wrong5
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.19}
+            on_active: root.deactivate3()
+            on_release: root.change3()
+
+        CheckBox:
+            id: wrong6
+            size_hint: (0.1,0.1)
+            pos_hint: {'x':0.53, 'y':0.1}
+            on_active:
+                root.deactivate4()
+                root.change4()
+
+        Label:
+            text: 'How is a muscle adapted to its function'
+            font_size: 25
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.24, 'y':-0.01}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: mnuclei
+            text: 'Muscular tissue has many nuclei'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':-0.09}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: 1000
+            text: '1000'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':-0.17}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: 110
+            text: '110'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':-0.26}
+            color: (1,1,1)
+            halign: 'center'
+
+        Label:
+            id: 10000
+            text: '10000'
+            font_size: 23
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0.18, 'y':-0.35}
+            color: (1,1,1)
+            halign: 'center'
+
+
+##################################### BUTTONS ################################
+                
+        StrokeButton:
+            id: submit
+            text: 'Submit'
+            color: (50/255, 205/255, 50/255,255/255)
+            back_color: (50/255, 205/255, 50/255,255/255)
+            bold: True
+            font_size: 28
+            bold: True
+            font_name: 'Amaranth-Regular' 
+            size_hint: (0.2,0.07)
+            pos_hint:{'x':0.7, 'y':0.01}
+            ##Giving Button functions       
+            on_release:
+                root.dismiss()
+
+        StrokeButton:
+            id: submit
+            text: 'Close'
+            back_color: (244/255, 46/255, 23/255,255/255)
+            color: (244/255, 46/255, 23/255,255/255)
+            font_size: 28
+            font_name: 'Amaranth-Regular' 
+            size_hint: (0.2,0.07)
+            pos_hint:{'x':0.1, 'y':0.01}
+            ##Giving Button functions       
+            on_release:
+                root.dismiss()
+                
+                
+<Cells2>
+    id: cells 2
+    auto_dismiss: False
+    size_hint:(0.9,0.9)
+    title: ""
+    separator_height: 0
+    opacity:1
+    
+    FloatLayout:
+
+        CheckBox:
+            id: right
+            size_hint: (0.2,0.2)
+            pos_hint: {'x':0.05, 'y':0.65}
+
+        CheckBox:
+            id: wrong
+            size_hint: (0.2,0.2)
+            pos_hint: {'x':0.05, 'y':0.45}
+
+        CheckBox:
+            id: wrong
+            size_hint: (0.2,0.2)
+            pos_hint: {'x':0.05, 'y':0.25}
+
+        CheckBox:
+            id: wrong
+            size_hint: (0.2,0.2)
+            pos_hint: {'x':0.05, 'y':0.05}
+            
+        Label:
+            text: 'Multiple Choice'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0, 'y':0.5}
+            color: (1,1,1)
+
+        Label:
+            text: 'Question'
+            font_size: 30
+            bold: True
+            outline_color: (0,0,0)
+            font_name: 'Amaranth-Regular'
+            outline_width: 2
+            pos_hint:{'x':0, 'y':0.4}
+            color: (1,1,1)
+
+        StrokeButton:
+            text: 'X'
+            color: (1,1,1)
+            back_color: (244/255, 46/255, 23/255,255/255)
+            bold: True
+            outline_color: (244/255, 46/255, 23/255,255/255)
+            outline_width: 0.5
+            font_size: 30
+            bold: True
+            font_name: 'Amaranth-Regular' 
+            size_hint: (0.05,0.08)
+            pos_hint:{'x':0.92, 'y':0.94}
+            ##Giving Button functions       
+            on_press: print('Student Register!')
+            on_release:
+                app.root.current = 'cells'
+                root.dismiss()
+
+        StrokeButton:
+            text: 'Next Question'
+            color: (1,1,1)
+            back_color: (244/255, 46/255, 23/255,255/255)
+            bold: True
+            outline_color: (244/255, 46/255, 23/255,255/255)
+            outline_width: 0.5
+            font_size: 30
+            bold: True
+            font_name: 'Amaranth-Regular' 
+            size_hint: (0.05,0.08)
+            pos_hint:{'x':0.92, 'y':0.94}
+            ##Giving Button functions       
+            on_press: print('Student Register!')
+            on_release:
+                app.root.current = 'cells'
+                root.dismiss()
+
+        
